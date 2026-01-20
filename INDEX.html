@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anna & Jason — Wedding</title>
+  <meta name="description" content="Wedding invitation & gallery" />
+  <style>
+    :root{
+      --card-bg:#f2f2f2;
+      --page-bg:#ddd;
+      --accent:#111;
+      --muted:#666;
+      --card-radius:22px;
+      --gutter:20px;
+      --max-width:880px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--page-bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+
+    /* outer card like the Canva mock */
+    .card{
+      width:100%;
+      max-width:var(--max-width);
+      background:var(--card-bg);
+      border-radius:var(--card-radius);
+      overflow:hidden;
+      box-shadow:0 18px 40px rgba(10,10,10,0.12);
+    }
+
+    /* header / hero */
+    .hero{
+      position:relative;
+      height:420px;
+      background: center/cover no-repeat url('images/hero.jpg');
+      display:flex;
+      align-items:flex-end;
+      padding:48px 36px 80px 36px;
+      color:#fff;
+    }
+    /* subtle dark overlay */
+    .hero::before{
+      content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55));
+    }
+    .hero-inner{position:relative;z-index:2;width:100%;display:flex;align-items:flex-end;justify-content:space-between}
+
+    .title-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .couple-name{
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+      font-size:56px;line-height:0.9;font-weight:600;letter-spacing:0.8px;
+      text-align:center;
+      text-shadow:0 6px 30px rgba(0,0,0,0.4);
+      font-style:italic;
+    }
+    .hero-sub{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.85)}
+
+    /* logo placement (customizable) */
+    .logo{
+      position:absolute;left:20px;top:20px;z-index:3;display:flex;align-items:center;gap:10px
+    }
+    .logo img{width:56px;height:56px;object-fit:cover;border-radius:8px;border:2px solid rgba(255,255,255,0.12);background:#fff}
+    .logo .brand{color:#fff;font-weight:600}
+
+    /* main content sections */
+    .section{padding:44px 56px;background:linear-gradient(#fff,#fff)}
+    .section h3{font-family:Georgia, serif;font-size:18px;font-weight:600;margin-bottom:8px}
+    .muted{color:var(--muted);font-size:15px;line-height:1.6}
+
+    .rsvp-btn{display:inline-block;padding:10px 16px;border-radius:8px;border:1px solid #ccc;background:#fff;margin-top:14px;text-decoration:none;color:var(--accent);font-weight:600}
+
+    /* photo band separators like the template */
+    .band{height:120px;background:center/cover no-repeat}
+
+    /* story text center */
+    .story{max-width:760px;margin:18px auto;text-align:center}
+    .story p{margin-bottom:12px}
+
+    /* full width gallery */
+    .gallery-wrap{padding:22px 26px 56px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:6px;display:block;cursor:pointer}
+
+    /* footer spacing */
+    footer{padding:26px 36px 40px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:999}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:92vw;max-height:92vh;border-radius:6px}
+    .lightbox .close{position:absolute;top:18px;right:18px;font-size:22px;color:#fff;background:transparent;border:none}
+    .lightbox .nav{position:absolute;left:18px;right:18px;display:flex;justify-content:space-between;pointer-events:none}
+    .nav button{pointer-events:auto;background:transparent;border:0;color:#fff;font-size:44px}
+
+    /* responsive adjustments */
+    @media (max-width:720px){
+      .hero{height:360px;padding:28px 18px 48px}
+      .couple-name{font-size:44px}
+      .section{padding:28px 18px}
+      .gallery img{height:110px}
+      .logo img{width:46px;height:46px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+
+    <!-- custom logo placement: drop your logo at images/logo.png -->
+    <div class="logo" aria-hidden="true">
+      <img src="images/logo.png" alt="Couple logo" />
+      <div class="brand">Anna & Jason</div>
+    </div>
+
+    <!-- HERO. Replace images/hero.jpg with your provided hero image -->
+    <section class="hero" aria-label="Hero image">
+      <div class="hero-inner">
+        <div></div>
+        <div class="title-wrap">
+          <div class="hero-sub">Saturday • 2024 • December 21</div>
+          <div class="couple-name">Anna & Jason</div>
+        </div>
+        <div style="width:120px"></div>
+      </div>
+    </section>
+
+    <!-- invite block -->
+    <section class="section" id="invite">
+      <div style="max-width:720px;margin:0 auto;text-align:center">
+        <h3 style="font-size:22px;margin-bottom:6px">Happily Ever After</h3>
+        <p class="muted">We, Anna & Jason, request the pleasure of your company to celebrate our marriage on</p>
+        <p style="font-weight:700;margin-top:10px">21 December 2024</p>
+        <p class="muted">At Castello di Armonia, 4045 St Helena Hwy, Calistoga, CA</p>
+        <a class="rsvp-btn" href="#rsvp">RSVP</a>
+      </div>
+    </section>
+
+    <!-- decorative band (full-bleed photo) -->
+    <div class="band" style="background-image:url('images/band1.jpg')" aria-hidden="true"></div>
+
+    <!-- story -->
+    <section class="section">
+      <div class="story">
+        <h3 style="font-size:18px">Our Story</h3>
+        <p class="muted">Anna and Jason's love story began on a crisp autumn evening in 2017. They bonded over travel, coffee, and a shared sense of adventure. This page showcases the photos taken before the wedding — curated highlights presented on the wedding day.</p>
+        <p class="muted">Below you'll find a gallery of selected images. Click any image to view larger.</p>
+      </div>
+    </section>
+
+    <!-- another band -->
+    <div class="band" style="background-image:url('images/band2.jpg')" aria-hidden="true"></div>
+
+    <!-- photo gallery (about 20 images) -->
+    <section class="gallery-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:0 6px">
+        <h3 style="margin:0">Gallery</h3>
+        <div class="muted">20 Photos</div>
+      </div>
+
+      <div class="gallery" id="gallery">
+        <!-- Please place 20 images in images/ named 001.jpg .. 020.jpg -->
+        <img src="images/001.jpg" alt="Photo 1" data-index="0">
+        <img src="images/002.jpg" alt="Photo 2" data-index="1">
+        <img src="images/003.jpg" alt="Photo 3" data-index="2">
+        <img src="images/004.jpg" alt="Photo 4" data-index="3">
+        <img src="images/005.jpg" alt="Photo 5" data-index="4">
+        <img src="images/006.jpg" alt="Photo 6" data-index="5">
+        <img src="images/007.jpg" alt="Photo 7" data-index="6">
+        <img src="images/008.jpg" alt="Photo 8" data-index="7">
+        <img src="images/009.jpg" alt="Photo 9" data-index="8">
+        <img src="images/010.jpg" alt="Photo 10" data-index="9">
+        <img src="images/011.jpg" alt="Photo 11" data-index="10">
+        <img src="images/012.jpg" alt="Photo 12" data-index="11">
+        <img src="images/013.jpg" alt="Photo 13" data-index="12">
+        <img src="images/014.jpg" alt="Photo 14" data-index="13">
+        <img src="images/015.jpg" alt="Photo 15" data-index="14">
+        <img src="images/016.jpg" alt="Photo 16" data-index="15">
+        <img src="images/017.jpg" alt="Photo 17" data-index="16">
+        <img src="images/018.jpg" alt="Photo 18" data-index="17">
+        <img src="images/019.jpg" alt="Photo 19" data-index="18">
+        <img src="images/020.jpg" alt="Photo 20" data-index="19">
+      </div>
+    </section>
+
+    <footer>
+      © Anna & Jason • 2024
+    </footer>
+  </div>
+
+  <!-- Lightbox markup -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close" id="lb-close" aria-label="Close">✕</button>
+    <div class="nav">
+      <button id="prev" aria-label="Previous">‹</button>
+      <button id="next" aria-label="Next">›</button>
+    </div>
+    <img src="" alt="Expanded photo" id="lb-img">
+  </div>
+
+  <script>
+    // Simple lightbox with keyboard navigation
+    const gallery = Array.from(document.querySelectorAll('#gallery img'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const closeBtn = document.getElementById('lb-close');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let current = 0;
+
+    function openAt(i){
+      current = (i + gallery.length) % gallery.length;
+      lbImg.src = gallery[current].src;
+      lb.classList.add('active');
+      lb.setAttribute('aria-hidden','false');
+    }
+    function closeLB(){
+      lb.classList.remove('active');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+    }
+
+    gallery.forEach((img, idx)=> img.addEventListener('click', ()=> openAt(idx)));
+    closeBtn.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLB(); });
+
+    prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); openAt(current-1); });
+    nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); openAt(current+1); });
+
+    document.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('active')) return;
+      if(e.key==='ArrowLeft') openAt(current-1);
+      if(e.key==='ArrowRight') openAt(current+1);
+      if(e.key==='Escape') closeLB();
+    });
+
+    // Accessibility: focus trap (basic)
+    closeBtn.addEventListener('keydown', (e)=>{ if(e.key==='Tab') e.preventDefault(); });
+  </script>
+</body>
+</html>
